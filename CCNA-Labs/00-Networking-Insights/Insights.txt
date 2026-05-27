@@ -1,0 +1,5 @@
+- VLANs do not survive routing.
+- IP survives end-to-end.
+- MAC changes every routed hop.
+- DHCP helper relays broadcasts as unicast.
+- Routers rebuild Layer 2 headers every hop.

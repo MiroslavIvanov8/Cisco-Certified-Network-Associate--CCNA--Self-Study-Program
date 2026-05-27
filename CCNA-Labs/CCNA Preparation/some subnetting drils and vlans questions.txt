@@ -1,0 +1,32 @@
+stres test 1- subnetting drill 
+	1- 192.168.10.130/26 - 6 free bits -> 2^6 = 64 block size. network 192.168.10.124 broadcast 192.168.10.167. usable hosts 62. the range is from .125 - .166
+        2- 10.0.0.90/28  - 4 free bits = 2^4 = 8 bloc size. network 10.0.0.88 broadcast 10.0.0.95, possible hosts 6, range is from .89 to .94
+	3- 172.16.5.70/25 - 7 free bits => 2^7 =128 block size. network 172.16.5.0 broadcast 172.16.5.127, possible hosts 126, range from .0 - .127
+	4- 192.168.50.250/27 - 5 free bits -> 2^5 = 32 block size, network (not a full block) 172.168.50.248 network broadcast should be 172.168.50.255 as last available address. possible hosts 5 when tehre should be 30
+	5- 10.10.10.130/30 - 2 free bits => 2^2 = 4 block size, network 10.10.10.128 = broadcast 10.10.10.131, possible  hosts 2, range from .129-.130	
+routing table logic 64-96-128-160-192-224
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+S    192.168.2.0/24 [1/0] via 192.168.1.1
+R    192.168.3.0/24 [120/1] via 192.168.2.2
+O    192.168.4.0/24 [110/10] via 192.168.3.1
+
+1- to reach 192.168.4.0/24 router will use OSPF route
+2- to reach 192.168.2.0/24 router will use static route
+3- to reach 92.168.5.0/24 the router doesnt have a learned route, so he will send it to the default route which is missing form the table.
+
+Static Route and Default Route Questions:
+1- router will use the route that has lower metric. in the case static routes has metrics of 1. so ad is taken into consideration as tie braker. route with ad 1 will be used because lower ad is better.
+2- a default route is missing then router wouldnt knwo how to forward traffic for which it doesnt have a matching route for. ddefault route matches all traffic that router doesnt have a specific matching route with prefix for it .
+
+till here around 13 min. went back to check if my my subnetting range was correct.
+
+stress test 2 - 
+1-i read the scenario,  so i will answer for the dtp modes - desirable mode means agreeable if the port receives dtp msg it would agree to form a trunk. Thus auto mode sends dtp msg that negotiates trunk link creationg. in this case the trunk link would atomatically form.	
+	
+Troubleshooting Scenarios:
+Native VLAN Mismatch:
+if we have a native vlan mismatch we would get a warning message about vlan mismatch . also it poses security issues as some untagged traffic fro mthe native vlan could be forwarded to other vlans because of that. fix, troubleshoot which side of the trunk has the wrong vlan and assign the correct vlan.
+VLAN Tagging:
+the receiving switch would see an untagged vlan. the native vlan is 10, but the receiving switch doesnt know that, upon seeing untagged vlan he could misplace it in vlan 10 or drop it because it doesnt know what do with it.
+
+around 20-22 mins for all of this. ready want to rate me, grade, give me guidance and what i am missing and i shall prepare for the lab.
