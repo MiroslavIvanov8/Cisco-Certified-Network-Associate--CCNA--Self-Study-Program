@@ -1,0 +1,6 @@
+Helper-address converts broadcast DHCP Discover
+into unicast directed to DHCP server.
+
+It does NOT create return routes.
+
+Server still needs a path back to the client network.

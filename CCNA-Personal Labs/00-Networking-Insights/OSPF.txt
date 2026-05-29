@@ -1,0 +1,6 @@
+DROTHER → DR/BDR full adjacency
+DR coordinates LSA flooding
+Every router still runs SPF independently
+Every router still maintains its own LSDB
+DR/BDR election prefers highest priority, if priorities are equal Highest Router ID Wins then.
+If a DR already exists, a newly joined router with higher priority or higher Router ID does not automatically become DR.
